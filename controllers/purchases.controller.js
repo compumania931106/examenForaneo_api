@@ -22,6 +22,12 @@ const create = (req, res) => {
     }));
 };
 
+const getPurchasesByIDUser = (req, res) => {
+    const { id } = req.params;
+    _purchase.findOne({ "user._id" : id })
+        .exec(handler.handleOne.bind(null, 'purchases', res));
+}
+
 module.exports = (Purchase) => {
     _purchase = Purchase;
     return ({
